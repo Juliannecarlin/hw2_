@@ -81,74 +81,76 @@ Role.destroy_all
 # Do not use hard-coded foreign key IDs.
 # # TODO!
 
+christopher_nolan = Person.new
+christopher_nolan.name = "Christopher Nolan"
+christopher_nolan.save
+
+christian_bale = Person.new
+christian_bale.name = "Christian Bale"
+christian_bale.save
+
+michael_caine = Person.new
+michael_caine.name = "Michael Caine"
+michael_caine.save
+
+liam_neeson = Person.new
+liam_neeson.name = "Liam Neeson"
+liam_neeson.save
+
+katie_holmes = Person.new
+katie_holmes_neeson.name = "Katie Holmes"
+katie_holmes.save
+
+gary_oldman = Person.new
+gary_oldman.name = "Gary Oldman"
+gary_oldman.save
+
+health_ledger = Person.new
+health_ledger.name = "Heath Ledger"
+health_ledger.save
+
+aaron_eckhart = Person.new
+aaron_eckhart.name = "Aaron Eckhart"
+aaron_eckhart.save
+
+maggie_gyllenhaal = Person.new
+maggie_gyllenhaal.name = "Maggie Gyllenhaal"
+maggie_gyllenhaal.save
+
+tom_hardy = Person.new
+tom_hardy.name = "Tom Hardy"
+tom_hardy.save
+
+joseph_gordon-levitt = Person.new
+joseph_gordon-levitt.name = "Joseph Gordon-Levitt"
+joseph_gordon-levitt.save
+
+anne_hathaway = Person.new
+anne_hathaway.name = "Anne Hathaway"
+anne_hathaway.save
+
 movies1 = Movie.new
 movies1.title = "Bateman Begins"
 movies1.year_released = "2005"
 movies1.rated = "PG-13"
-movies1.person_id = Person.where({name: "Christopher Nolan"})[0]
+movies1.person_id = people1.id
 movies1.save
 
 movies2 = Movie.new
 movies2.title = "The Dark Knight"
 movies2.year_released = "2008"
 movies2.rated = "PG-13"
-movies2.person_id = Person.where({name: "Christopher Nolan"})[0]
+movies2.person_id = people1.id
 movies2.save
 
 movies3 = Movie.new
 movies3.title = "The Dark Knight Rises"
 movies3.year_released = "2012"
 movies3.rated = "PG-13"
-movies3.person_id = Person.where({name: "Christopher Nolan"})[0]
+movies3.person_id = people1.id
 movies3.save
 
-people1 = Person.new
-people1.name = "Christopher Nolan"
-people1.save
 
-people2 = Person.new
-people2.name = "Christian Bale"
-people2.save
-
-people3 = Person.new
-people3.name = "Michael Caine"
-people3.save
-
-people4 = Person.new
-people4.name = "Liam Neeson"
-people4.save
-
-people5 = Person.new
-people5.name = "Katie Holmes"
-people5.save
-
-people6 = Person.new
-people6.name = "Gary Oldman"
-people6.save
-
-people7 = Person.new
-people7.name = "Heath Ledger"
-people7.save
-
-people8 = Person.new
-people8.name = "Aaron Eckhart"
-people8.save
-
-people9 = Person.new
-people9.name = "Maggie Gyllenhaal"
-people9.save
-
-people10 = Person.new
-people10.name = "Tom Hardy"
-people10.save
-
-people11 = Person.new
-people11.name = "Joseph Gordon-Levitt"
-people11.save
-
-people12 = Person.new
-people12.name = "Anne Hathaway"
-people12.save
 
 role1 = Role.new
 role1.movie_id = Movie.where({title: "Batman Begins"})
@@ -252,7 +254,7 @@ movies = Movie.all
 people = Person.all
 
 for movie in movies
-    director = Person.where({id: movie.person_id})
+    director = Person.where({id: movie.person_id})[0]
     puts "#{movie.title} - #{movie.year_released} - #{movie.rated} - #{director.name}"
 end
 
@@ -265,9 +267,9 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie
 # TODO!
 
-roles = Role.all
- for role in roles
-   movie = Movie.where({id: role.movie_id})[0] 
-   person = Person.where({id: role.person_id})[0]
-    puts "#{movie.title} - #{person.name} - #{role.character_name}"
-end
+# roles = Role.all
+#  for role in roles
+#    movie = Movie.where({id: role.movie_id})[0] 
+#    person = Person.where({id: role.person_id})[0]
+#     puts "#{movie.title} - #{person.name} - #{role.character_name}"
+# end
